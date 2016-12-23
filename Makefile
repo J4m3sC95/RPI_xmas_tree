@@ -9,8 +9,8 @@ all: $(TARGETS)
 $(TARGETS): %: %.c $(DEP).o
 	$(CC) -o $@ $< $(DEP).o $(CFLAGS)
 
-$(DEP): $(DEP).c $(DEP).h
-	$(CC) -c -o $@.o $< $(CFLAGS)
+$(DEP).o: $(DEP).c $(DEP).h
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 clean:
 	rm -f $(TARGETS) $(DEP).o
