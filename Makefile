@@ -1,22 +1,16 @@
 CC=gcc
 CFLAGS=-I. -lwiringPi -Wall
+DEP=xmas
 
-TARGET1=example1
-TARGET2=random
-TARGET3=random_indiv
-TARGET4=random_pair
-TARGET5=fade
+TARGETS=example1 random random_indiv random_pair fade
 
-all:
-	$(CC) -o $(TARGET1) $(TARGET1).c xmas.c $(CFLAGS)
-	$(CC) -o $(TARGET2) $(TARGET2).c xmas.c $(CFLAGS)
-	$(CC) -o $(TARGET3) $(TARGET3).c xmas.c $(CFLAGS)
-	$(CC) -o $(TARGET4) $(TARGET4).c xmas.c $(CFLAGS)
-	$(CC) -o $(TARGET5) $(TARGET5).c xmas.c $(CFLAGS)
+all: $(TARGETS)
+
+$(TARGETS): %: %.c $(DEP).o
+	$(CC) -o $@ $< $(DEP).o $(CFLAGS)
+
+$(DEP): $(DEP).c $(DEP).h
+	$(CC) -c -o $@.o $< $(CFLAGS)
 
 clean:
-	rm -f $(TARGET1)
-	rm -f $(TARGET2)
-	rm -f $(TARGET3)
-	rm -f $(TARGET4)
-	rm -f $(TARGET5)
+	rm -f $(TARGETS) $(DEP).o

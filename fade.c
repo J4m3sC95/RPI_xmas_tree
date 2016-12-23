@@ -4,7 +4,7 @@
 // main loop
 int main(){
 	xmas_setup();
-
+	
 	unsigned char n;
 	SET_CTRL_BYTE(0);
 	while(1){
