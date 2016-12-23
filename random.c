@@ -5,6 +5,7 @@ int main(){
 	xmas_setup();
 
 	while(1){
-		tree_control(rand(), 100);
+		SET_CTRL_BYTE(rand());
+		tree_control(100);
 	}
 }

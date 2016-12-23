@@ -8,13 +8,13 @@ int main(){
 	xmas_setup();
 
 	while(1){
-		tree_control_byte = 0;
+		SET_CTRL_BYTE(0);
 		do{
 			random_LED = (rand() % 7) + 1;
 		}while (random_LED == prev_LED);
 		prev_LED = random_LED;
 		
 		LED_ON(random_LED);
-		tree_control(tree_control_byte, 100);
+		tree_control(100);
 	}
 }

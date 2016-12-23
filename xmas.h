@@ -9,9 +9,10 @@
 // macros to add/remove an led from the control byte
 unsigned char tree_control_byte;
 #define LED_ON(n) (tree_control_byte |= (1 << (n-1)))
-#define LED_OFF(n) (tree_control_byte &= (!(1<<(n-1)))) 
+#define LED_OFF(n) (tree_control_byte &= (~(1<<(n-1))))
+#define SET_CTRL_BYTE(n) (tree_control_byte = n)
 
 // function definitions
 void xmas_setup();
-void tree_control(unsigned char control_byte, unsigned int LED_delay);
+void tree_control(unsigned int LED_delay);
 void LED_control(unsigned char n);

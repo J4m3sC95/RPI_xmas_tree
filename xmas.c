@@ -4,19 +4,21 @@
 // setup function
 void xmas_setup(){
 	wiringPiSetup();
+	SET_CTRL_BYTE(0);
 }
 
 // function to update LEDs and keep them illuminated for given time period
-void tree_control(unsigned char control_byte, unsigned int LED_delay){
+void tree_control(unsigned int LED_delay){
 	unsigned char n;
-	if(control_byte == 0){
+	if(tree_control_byte == 0){
+		LED_control(0);
 		delay(LED_delay);
 	}
 	else{
 		unsigned long prevTime = millis();
 		while((millis() - prevTime) < LED_delay){
 			for(n = 1; n < 8; n++){
-				if(control_byte & (1 << (n-1))){
+				if(tree_control_byte & (1 << (n-1))){
 					LED_control(n);
 					delay(LED_ON_TIME);
 				}

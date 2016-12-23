@@ -10,7 +10,7 @@ int main(){
 	xmas_setup();
 
 	while(1){
-		tree_control_byte = 0;
+		SET_CTRL_BYTE(0);
 		do{
 			random_LED[0] = (rand() % 7) + 1;
 			random_LED[1] = (rand() % 7) + 1;
@@ -26,6 +26,6 @@ int main(){
 		
 		LED_ON(random_LED[0]);
 		LED_ON(random_LED[1]);
-		tree_control(tree_control_byte, 100);
+		tree_control(100);
 	}
 }
